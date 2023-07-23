@@ -1,10 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 import { nanoid } from "nanoid";
-import { json } from "express";
 
 const contactsPath = path.resolve("db", "contacts.json");
-console.log(contactsPath);
 
 const updateContactStorage = (contacts) =>
   fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
@@ -34,7 +32,7 @@ export const updateContactById = async (id, { name, email, phone }) => {
   if (index === -1) {
     return null;
   }
-  console.log(index);
+
   contacts[index] = { id, name, email, phone };
   await updateContactStorage(contacts);
   return contacts[index];
